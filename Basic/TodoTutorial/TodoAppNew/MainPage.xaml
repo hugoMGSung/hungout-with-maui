@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TodoApp.MainPage" Loaded="ContentPage_Loaded">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="할일 추가" Clicked="OnAddToDoClicked" />
+    </ContentPage.ToolbarItems>
+
+    <CollectionView x:Name="collectionView"
+                  SelectionMode="Single"
+                  SelectionChanged="OnSelectionChanged"
+                  Margin="30,50,50,0">
+
+        <CollectionView.ItemsLayout>
+            <LinearItemsLayout Orientation="Vertical" ItemSpacing="15" />
+        </CollectionView.ItemsLayout>
+
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Label Text="{Binding TodoName}" FontSize="Medium" FontFamily="NanumBold" />
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</ContentPage>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TodoApp.Pages.ManageToDoPage"
+             Title="Manage ToDo Items">
+    <ContentPage.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="5,5,5,5"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="*, Auto" ColumnDefinitions="*,*,*" ColumnSpacing="5">
+
+        <TableView Intent="Data" Grid.Row="0" Grid.ColumnSpan="3">
+
+            <TableRoot>
+
+                <TableSection Title="Add New Item">
+                    <EntryCell Text="{Binding Path=Todo.TodoName}" Placeholder="Enter Text Here"/>
+                </TableSection>
+            </TableRoot>
+        </TableView>
+
+        <Button Text="Save" Clicked="OnSaveButtonClick" Grid.Row="1" Grid.Column="0" />
+        <Button Text="Delete" Clicked="OnDeleteButtonClick" Grid.Row="1" Grid.Column="1" />
+        <Button Text="Cancel" Clicked="OnCancelButtonClick" Grid.Row="1" Grid.Column="2" />
+    </Grid>
+</ContentPage>

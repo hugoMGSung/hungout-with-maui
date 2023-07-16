@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TodoApp.Pages.ManageToDoPage"
+             Title="Manage ToDo Items">
+    <ContentPage.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="5,5,5,5"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="*, Auto" ColumnDefinitions="*,*,*" ColumnSpacing="5">
+
+        <TableView Intent="Data" Grid.Row="0" Grid.ColumnSpan="3">
+            <TableRoot>
+                <TableSection Title="새 일정추가">
+                    <EntryCell Text="{Binding Path=Todo.TodoName}" Placeholder="텍스트 입력"/>
+                </TableSection>
+            </TableRoot>
+        </TableView>
+
+        <Button Text="저장" FontFamily="NanumBold" Clicked="OnSaveButtonClick" Grid.Row="1" Grid.Column="0" />
+        <Button Text="삭제" FontFamily="NanumBold" Clicked="OnDeleteButtonClick" Grid.Row="1" Grid.Column="1" />
+        <Button Text="취소" FontFamily="NanumBold" Clicked="OnCancelButtonClick" Grid.Row="1" Grid.Column="2" />
+    </Grid>
+</ContentPage>
