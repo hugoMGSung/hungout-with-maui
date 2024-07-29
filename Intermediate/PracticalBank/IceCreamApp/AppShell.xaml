@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="IceCreamApp.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:local="clr-namespace:IceCreamApp"
+    xmlns:pages="clr-namespace:IceCreamApp.Pages"
+    Shell.FlyoutBehavior="Flyout"
+    Title="IceCreamApp">
+
+    <!--<ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="MainPage" />-->
+    
+    <!-- 1. -->
+    <ShellContent
+        ContentTemplate="{DataTemplate pages:OnboardingPage}"
+        Shell.FlyoutBehavior="Disabled"
+        Shell.FlyoutItemIsVisible="False" />
+
+    <!-- 2. -->
+    <TabBar FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent
+            Title="Home"
+            Icon="home"
+            ContentTemplate="{DataTemplate pages:HomePage}"
+            Route="HomePage" />
+        <!--Shell.NavBarIsVisible="False"/>-->
+
+        <ShellContent
+            Title="Cart"
+            Icon="cart"
+            ContentTemplate="{DataTemplate pages:CartPage}"
+            Route="CartPage" />
+
+        <ShellContent
+            Title="Profile"
+            Icon="user"
+            ContentTemplate="{DataTemplate pages:ProfilePage}"
+            Route="ProfilePage" />
+    </TabBar>
+
+    <!-- 5. -->
+    <MenuItem Text="Signout"
+              IconImageSource="logout"
+              Clicked="Signout_Clicked"/>
+
+    <!-- 6. 아래의 ItemTemplate 복사 -->
+    <Shell.MenuItemTemplate>
+        <DataTemplate>
+            <Grid ColumnDefinitions="Auto, *"
+                  ColumnSpacing="15"
+                  RowSpacing="5"
+                  Padding="10">
+                <Image 
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Source="{Binding Icon}"
+                    WidthRequest="24"
+                    HeightRequest="24" />
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="1" 
+                    Text="{Binding Text}" 
+                    TextColor="#66A091"
+                    FontSize="16" />
+            </Grid>
+        </DataTemplate>
+    </Shell.MenuItemTemplate>
+
+    <!-- 3. 외쪽 플라이아웃 메뉴 -->
+    <Shell.ItemTemplate>
+        <DataTemplate>
+            <Grid ColumnDefinitions="Auto, *, Auto"
+                  ColumnSpacing="15"
+                  RowDefinitions="Auto, Auto"
+                  RowSpacing="5"
+                  Padding="10">
+                <Image 
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Source="{Binding FlyoutIcon}"
+                    WidthRequest="24"
+                    HeightRequest="24" />
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="1" 
+                       Text="{Binding Title}" 
+                       TextColor="#66A091"
+                       FontSize="16" />
+                <Image
+                    Grid.Row="0"
+                    Grid.Column="2"
+                       Source="right_arrow"
+                       WidthRequest="24" />
+                <BoxView Grid.Row="1"
+                         Grid.ColumnSpan="3"
+                         HeightRequest="1"
+                         Color="#66A091" />
+            </Grid>
+        </DataTemplate>
+    </Shell.ItemTemplate>
+
+    <!-- 4. -->
+    <Shell.FlyoutHeader>
+        <Border BackgroundColor="#66A091"
+                Padding="10">
+            <VerticalStackLayout HorizontalOptions="Center"
+                                 Spacing="10">
+                <Image Source="popsicle"
+                       HeightRequest="120"
+                       WidthRequest="120"
+                       HorizontalOptions="Center" />
+                <Label Text="IceCream Shop"
+                       HorizontalOptions="Center"
+                       FontSize="18"
+                       TextColor="White"
+                       TextTransform="Uppercase"
+                       FontAttributes="Bold" />
+            </VerticalStackLayout>
+        </Border>
+    </Shell.FlyoutHeader>
+
+    <Shell.FlyoutFooter>
+        <Border BackgroundColor="#66A091"
+                StrokeThickness="0"
+                Padding="10">
+            <Label Text="Forward by Abhay Prince"
+                   TextColor="White"
+                   HorizontalOptions="Center"
+                   FontSize="15"
+                   FontAttributes="Bold"/>
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer Tapped="FlyoutFooter_Tapped" />
+            </Border.GestureRecognizers>
+        </Border>
+    </Shell.FlyoutFooter>
+</Shell>
